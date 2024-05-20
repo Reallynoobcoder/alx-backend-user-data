@@ -14,11 +14,12 @@ app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 
-@app.errorhandler(404)
+@app.route('/api/v1/unauthorized', methods=['GET'])
+@app.errorhandler(401)
 def not_found(error) -> str:
     """ Not found handler
     """
-    return jsonify({"error": "Not found"}), 404
+    return jsonify({"error": "Unauthorized"}), 401
 
 
 if __name__ == "__main__":
