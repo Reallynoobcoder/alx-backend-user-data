@@ -5,18 +5,15 @@ from typing import List, TypeVar
 
 
 class Auth:
+    """A class to manage the API authentication."""
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """Check if authentication is required for a given path."""
-        if path in excluded_paths:
-            return False
-        else:
-            return True
+        return True
 
-    def authorization_header(self, request: Request = None) -> str:
+    def authorization_header(self, request=None) -> str:
         """Extract authorization header from the Flask request object."""
-        if request is None:
-            return None
+        return None
 
     def current_user(self, request=None) -> TypeVar('User'):
         """Retrieve the current user based on the Flask request object."""
