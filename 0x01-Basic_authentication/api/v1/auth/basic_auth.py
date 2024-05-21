@@ -3,6 +3,6 @@
 from .auth import Auth
 
 
-class BasicAuth(A & uth):
+class BasicAuth(Auth):
     """Class BasicAuth that inherits from Auth."""
     pass
