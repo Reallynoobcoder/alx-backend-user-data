@@ -20,6 +20,9 @@ if AUTH_TYPE == 'auth':
 elif AUTH_TYPE == 'basic_auth':
     from api.v1.auth.basic_auth import BasicAuth
     auth = BasicAuth()
+elif AUTH_TYPE == 'session_auth':
+    from api.v1.auth.session_auth import SessionAuth
+    auth = SessionAuth()
 
 
 @app.errorhandler(401)
@@ -37,7 +40,10 @@ def forbidden(error) -> str:
 @app.before_request
 def before_request():
     """Filter each request before processing"""
-    excluded_paths = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
+    excluded_paths = [
+        '/api/v1/status/',
+        '/api/v1/unauthorized/',
+        '/api/v1/forbidden/']
 
     if auth is None:
         return
@@ -59,4 +65,3 @@ if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
     port = getenv("API_PORT", "5000")
     app.run(host=host, port=port)
-
