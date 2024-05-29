@@ -29,19 +29,22 @@ class DB:
         return self.__session
 
     def add_user(self, email: str, hashed_password: str) -> User:
-        """Add a new user to the database
-
-        Args:
-            email (str): User's email
-            hashed_password (str): User's hashed password
-
-        Returns:
-                User: The created User object
-        """
+        """Add a new user to the database."""
 
         user = User(email=email, hashed_password=hashed_password)
         self._session.add(user)
         self._session.commit()
+        return user
+
+    def find_user_by(self, **kwargs) -> User:
+        """Find a user by arbitrary keyword arguments"""
+        if not kwargs:
+            raise InvalidRequestError("No query arguments provided.")
+
+        user = self.__session.query(User).filter_by(**kwargs).first()
+
+        if not user:
+            raise NoResultFound("No results are found")
         return user
 
     def update_user(self, user_id: int, **kwargs: dict) -> None:
