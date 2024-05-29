@@ -16,7 +16,6 @@ class DB:
         """Initialize a new DB instance."""
         self._engine = create_engine("sqlite:///a.db", echo=False)
         Base.metadata.create_all(self._engine)
-        Base.metadata.drop_all(self._engine)
         self.__session = None
 
     @property
@@ -54,5 +53,5 @@ class DB:
         user = self.__session.query(User).filter_by(**kwargs).first()
 
         if not user:
-            raise NoResultFound("No results are found")
+            raise NoResultFound("No user found matching the query.")
         return user
