@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
-
+from sqlalchemy.exc import NoResultFound, InvalidRequestError
 from user import Base, User
 
 
@@ -53,5 +53,5 @@ class DB:
         user = self.__session.query(User).filter_by(**kwargs).first()
 
         if not user:
-            raise NoResultFound("No user found matching the query.")
+            raise NoResultFound("No results are found.")
         return user
