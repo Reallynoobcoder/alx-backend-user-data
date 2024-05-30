@@ -47,7 +47,7 @@ class DB:
             raise NoResultFound("No user found matching the query.")
         return user
 
-    def update_user(self, user_id: int, **kwargs: dict) -> None:
+    def update_user(self, user_id: int, **kwargs) -> None:
         """
         Update a user's attributes based on keyword arguments.
         """
