@@ -44,7 +44,7 @@ class DB:
         user = self._session.query(User).filter_by(**kwargs).first()
 
         if not user:
-            raise NoResultFound("No user found.")
+            raise NoResultFound("No user found matching the query.")
         return user
 
     def update_user(self, user_id: int, **kwargs: dict) -> None:
