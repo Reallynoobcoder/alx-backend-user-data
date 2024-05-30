@@ -41,10 +41,10 @@ class DB:
         if not kwargs:
             raise InvalidRequestError("No query arguments provided.")
 
-        user = self.__session.query(User).filter_by(**kwargs).first()
+        user = self._session.query(User).filter_by(**kwargs).first()
 
         if not user:
-            raise NoResultFound("No user found matching the query.")
+            raise NoResultFound("No user found.")
         return user
 
     def update_user(self, user_id: int, **kwargs: dict) -> None:
