@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Flask app."""
-from flask import Flask, jsonify, request, abort, make_response
+from flask import Flask, jsonify, request, abort, make_response, Response
 from auth import Auth
 
 app = Flask(__name__)
@@ -27,7 +27,7 @@ def users():
 
 
 @app.route("/sessions", methods=["POST"], strict_slashes=False)
-def login():
+def login() -> Response:
     """Log in end point."""
     email = request.form.get("email")
     password = request.form.get("password")
@@ -40,4 +40,8 @@ def login():
         return response
 
     else:
-        return abort(401)
+        abort(401)
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port="5000")
