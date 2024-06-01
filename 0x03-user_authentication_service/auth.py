@@ -95,6 +95,6 @@ class Auth:
 
         new_token = _generate_uuid()
 
-        self._db.update_user(user.id, session_id=new_token)
+        self._db.update_user(user.id, new_token=new_token)
 
         return new_token
