@@ -73,7 +73,7 @@ class Auth:
     def get_user_from_session_id(
             self, session_id: Optional[str]) -> Optional[User]:
         """Find user by session ID and return None if no user is found."""
-        if session_id is None or not session_id:
+        if session_id is None:
             return None
 
         try:
