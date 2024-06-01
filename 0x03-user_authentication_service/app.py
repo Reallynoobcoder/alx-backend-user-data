@@ -43,7 +43,7 @@ def login() -> Response:
 
 
 @app.route("/sessions", methods=["DELETE"], strict_slashes=False)
-def logout():
+def logout() -> Response:
     """End point that logs out by destroying the session."""
     session_id = request.cookies.get("session_id")
 
