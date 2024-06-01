@@ -69,3 +69,15 @@ class Auth:
             return new_uuid
         except NoResultFound:
             return None
+
+    def get_user_from_session_id(
+            self, session_id: Optional[str]) -> Optional[User]:
+        """Find user by session ID and return None if no user is found."""
+        if session_id is None or not session_id:
+            return None
+
+        try:
+            session = self._db.find_user_by(session_id=session_id)
+            return session
+        except NoResultFound:
+            return None
