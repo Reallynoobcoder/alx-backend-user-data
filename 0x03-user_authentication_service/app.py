@@ -94,7 +94,7 @@ def update_password() -> Response:
     except ValueError:
         abort(403)
     return jsonify(
-            {"email": user.email, "message": "Password updated"})
+            {"email": email, "message": "Password updated"})
 
 
 if __name__ == "__main__":
