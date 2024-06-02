@@ -91,10 +91,10 @@ def update_password() -> Response:
     try:
         user = AUTH._db.find_user_by(email=email)
         AUTH.update_password(reset_token, new_password)
-        return jsonify(
-            {"email": user.email, "message": "Password updated"}), 200
     except ValueError:
         abort(403)
+    return jsonify(
+            {"email": user.email, "message": "Password updated"}), 200
 
 
 if __name__ == "__main__":
